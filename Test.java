@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Test {
+    public static void main(String[] args) throws IOException {
+        System.out.println(countCharacters(""));
+    }
+
     public Test() {
         scanner = null;
     }
@@ -22,7 +26,7 @@ public class Test {
 
     }
 
-    public int countCharacters(String filename) throws IOException {
+    public static int countCharacters(String filename) throws IOException {
         int characterCount = 0;
         BufferedReader reader = new BufferedReader(new FileReader(filename));
 
