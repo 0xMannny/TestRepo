@@ -7,8 +7,8 @@ import java.util.Scanner;
 // Creating a text File using FileWriter
 class FileWriterReader
 {
-    public static File writeFileMethod(String content) throws IOException {
-        File file =new File("written.txt");
+    public static File writeFileMethod(String content, String fileName) throws IOException {
+        File file =new File(fileName);
         file.createNewFile();
         FileWriter writer = new FileWriter(file);
 
@@ -20,10 +20,15 @@ class FileWriterReader
 
     public static String readFileMethod(File file) throws IOException {
         String output = "";
+        int count = 0;
         try ( final Scanner scanner = new Scanner(file); ) {
             while ( scanner.hasNextLine() ) {
                 String line = scanner.nextLine();
-                output += "\n" + line;
+                if (count != 0) {
+                    output += "\n";
+                }
+                output += line;
+                count++;
             }
         } catch ( FileNotFoundException e ) {
             e.printStackTrace();
@@ -32,7 +37,7 @@ class FileWriterReader
     }
 
     public static void main(String[] args) throws IOException {
-        File file = writeFileMethod("Hello");
+        File file = writeFileMethod("Hello\nHello", "output.txt");
         System.out.println(readFileMethod(file));
     }
 }
